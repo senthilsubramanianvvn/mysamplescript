@@ -1,13 +1,13 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') { 
+        stage('jenuser1') { 
             steps {
                 echo "Running build as jenuser1"
 				sh './wrapper jenuser1'
             }
         }
-        stage('Test') { 
+        stage('jenuser2') { 
             steps {
                         
                 echo "Running build as jenuser2"
