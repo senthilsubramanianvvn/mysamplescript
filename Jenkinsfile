@@ -23,11 +23,11 @@ pipeline {
                             )
                         ]
                     )
-            }
+  //          }
                 // Second script
               
           //      sleep 30
-           steps {
+  //         steps {
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
@@ -45,10 +45,10 @@ pipeline {
                             )
                         ]
                     )
-           }
+ //          }
                 // Third script
           //            sleep 30
-                            steps {
+//                            steps {
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
