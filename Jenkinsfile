@@ -17,7 +17,7 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'runasuser.sh',
                                         remoteDirectory: '/tmp/script1',
-                                        execCommand: 'bash /tmp/scipt1/runasuser.sh && uname -n'
+                                        execCommand: 'bash /tmp/script1/runasuser.sh && uname -n'
                                     )
                                 ]
                             )
