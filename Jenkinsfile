@@ -17,17 +17,17 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'runasuser.sh',
                                         remoteDirectory: '/tmp/script1',
-                                        execCommand: 'bash /tmp/script1/runasuser.sh && uname -n'
+                                        execCommand: 'sudo -u vijay bash /tmp/script1/runasuser.sh'
                                     ),
                                     sshTransfer(
                                         sourceFiles: 'script2.sh',
                                         remoteDirectory: '/tmp/script2',
-                                        execCommand: 'bash /tmp/script2/script2.sh && uname -n'
+                                        execCommand: 'sudo -u senthil bash /tmp/script2/script2.sh && uname -n'
                                     ),
                                     sshTransfer(
                                         sourceFiles: 'script3.sh',
                                         remoteDirectory: '/tmp/script3',
-                                        execCommand: 'bash /tmp/script3/script3.sh && uname -n'
+                                        execCommand: 'sudo -u deploy bash /tmp/script3/script3.sh && uname -n'
                                     )
                                 ]
                             )
