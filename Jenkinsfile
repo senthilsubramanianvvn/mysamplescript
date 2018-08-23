@@ -12,7 +12,7 @@ pipeline {
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'target',
-                                  username: "vijay",
+     //                             username: "vijay",
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'runasuser.sh',
