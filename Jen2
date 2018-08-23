@@ -1,0 +1,72 @@
+pipeline {
+    agent any 
+    stages {
+            stage('Script1') {
+            steps {
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'target',
+     //                             username: "vijay",
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'runasuser.sh',
+                                        remoteDirectory: '/tmp/script1',
+                                        execCommand: 'sudo -u vijay bash /tmp/script1/runasuser.sh'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+     sleep 30
+     }
+        }
+		           stage('Script2') {
+            steps {
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'target',
+     //                             username: "vijay",
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'script2.sh',
+                                        remoteDirectory: '/tmp/script2',
+                                        execCommand: 'sudo -u senthil bash /tmp/script2/script2.sh && uname -n'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                    sleep 10
+     }
+        }
+		           stage('Script3') {
+            steps {
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'target',
+     //                             username: "vijay",
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'script3.sh',
+                                        remoteDirectory: '/tmp/script3',
+                                        execCommand: 'sudo -u deploy bash /tmp/script3/script3.sh && uname -n'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+        sleep 3
+     }
+                
+        }
+      }
+}
