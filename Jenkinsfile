@@ -26,7 +26,7 @@ pipeline {
             }
                 // Second script
               
-                sleep 30
+          //      sleep 30
            steps {
                     sshPublisher(
                         failOnError: true,
@@ -47,7 +47,7 @@ pipeline {
                     )
            }
                 // Third script
-                      sleep 30
+          //            sleep 30
                             steps {
                     sshPublisher(
                         failOnError: true,
