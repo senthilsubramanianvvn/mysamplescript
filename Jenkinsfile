@@ -1,18 +1,28 @@
 pipeline {
     agent any 
     stages {
-        stage('jenuser1') { 
-            steps {
-                echo "Running build as jenuser1"
-				sh 'sudo -u jenuser1 bash runasuser.sh'
+            stage('OnTarget') {
+            when {
+                branch 'master'
             }
-        }
-        stage('jenuser2') { 
             steps {
-                        
-                echo "Running build as jenuser2"
-				sh 'sudo -u jenuser2 bash runasuser.sh'
-            
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'target',
+                     //               username: "$USERNAME",
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'runasuser.sh',
+                                        remoteDirectory: '/tmp',
+                                        execCommand: 'bash /tmp/runasuser.sh && uname -n'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
             }
         }
       }
